@@ -10,3 +10,4 @@ tsconfig.tsbuildinfo
 !jest.config.js
 !setup.js
 notes.md
+.DS_Store

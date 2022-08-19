@@ -24,7 +24,7 @@ export class Tfvars extends Construct {
 
     this.defaultTags = new cdktf.TerraformVariable(this, "default_tags", {
       default: {
-        project: "cdktf-networking-demo",
+        project: "ecs-microservices-cdktf",
       },
       description: "Map of default tags to apply to resources",
     }).value

@@ -1,5 +1,5 @@
 import { Construct } from "constructs"
-import { App, TerraformStack, RemoteBackend } from "cdktf"
+import { App, TerraformStack, RemoteBackend, TerraformOutput } from "cdktf"
 import { AwsProvider } from "@cdktf/provider-aws"
 import { Tfvars } from "./variables"
 import { Network } from "./vpc"
@@ -137,16 +137,22 @@ class MyStack extends TerraformStack {
     // Metrics
     new DatadogProvider(this, "datadog")
     new DDClusterCpuMonitor(this, "cluster_cpu_monitor", vars, cluster.name)
+
+    // Outputs
+    new TerraformOutput(this, "client_service_endpoint", {
+      value: clientAlb.lb.dnsName,
+      description: "DNS name (endpoint) of the AWS ALB for Client service",
+    })
   }
 }
 
 const app = new App();
-const stack = new MyStack(app, "cdktf-init");
+const stack = new MyStack(app, "ecs-microservices-cdktf");
 new RemoteBackend(stack, {
   hostname: "app.terraform.io",
-  organization: "jcolemorrison",
+  organization: process.env.CDKTF_ECS_TFC_ORGANIZATION || "",
   workspaces: {
-    name: "cdktf-init"
+    name: "ecs-microservices-cdktf"
   }
 });
 app.synth();
