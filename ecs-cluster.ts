@@ -15,7 +15,7 @@ export class EcsCluster extends Construct {
 
     const nameTagPrefix = `${Fn.lookup(vars.defaultTags, "project", "")}`
 
-    this.cluster = new ecs.EcsCluster(this, "cluster", {
+    this.cluster = new ecs.EcsCluster(this, name, {
       name: `${nameTagPrefix}-cluster`,
     })
   }
