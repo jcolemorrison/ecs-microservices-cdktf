@@ -5,6 +5,7 @@ This project creates a microservice architecture on AWS ECS Fargate with Datadog
 ## The Architecture
 
 ![ECS Microservices CDKTF](images/ecs-microservices-cdktf.png)
+![ECS Microservices CDKTF-AWS](images/ecs-microservices-cdktf-aws-icons.png)
 
 All services use [Fake Service](https://github.com/nicholasjackson/fake-service) as placeholders.  You can swap them out with your own containerized services.  You will need to change around port configurations and security groups to afford your applications' needs.
 
